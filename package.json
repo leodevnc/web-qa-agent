@@ -1,0 +1,18 @@
+{
+  "name": "web-qa-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local web QA execution with bounded browser actions and evidence-backed reports",
+  "scripts": {
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "demo": "node src/cli.mjs demo",
+    "qa": "node src/cli.mjs run"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

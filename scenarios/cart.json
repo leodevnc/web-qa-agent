@@ -1,0 +1,34 @@
+{
+  "name": "Cart quantity",
+  "goal": "Adding two notebooks updates the cart quantity to two.",
+  "path": "/healthy",
+  "steps": [
+    {
+      "type": "fill",
+      "target": {
+        "role": "spinbutton",
+        "name": "Quantity"
+      },
+      "value": "2"
+    },
+    {
+      "type": "click",
+      "target": {
+        "role": "button",
+        "name": "Add to cart"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "type": "text",
+      "target": {
+        "testId": "cart"
+      },
+      "expected": "Cart: 2 items"
+    },
+    {
+      "type": "layout"
+    }
+  ]
+}

@@ -28,9 +28,15 @@ The scenario is cloned at the boundary. The planner receives observation data, n
 | `openai-planner.mjs`  | Opt-in Responses adapter, strict proposal decoding, transport limits   |
 | `runner.mjs`          | Fresh browser context, HTTP/WS guard, loop, checks, artifact capture   |
 | `report.mjs`          | Escaped static HTML and structured JSON                                |
-| `ui.mjs`              | Shared neutral theme, report shell, status badges and suite overview   |
+| `ui.mjs`              | Shared static page shell, status badges and suite overview   |
 | `cli.mjs`             | Local demo, scenario command, exit status                              |
 | `fixtures/server.mjs` | Synthetic working and broken pages; no real business data              |
+
+## Report artifacts
+
+`src/ui.mjs` supplies the static shell shared by the suite overview and reports. Native links and disclosure controls keep reports usable without client-side scripts. Generated pages use an explicit content security policy and do not require external fonts, images, or analytics.
+
+Expected-outcome matching is separate from QA success: a deliberately broken fixture remains failed even when the demo completes successfully. Missing screenshots and incomplete runs must stay explicit. The storefront's intentionally overflowing panel is a regression fixture, not a layout defect to fix in the report.
 
 ## Browser request policy
 

@@ -1,19 +1,15 @@
-# Test evidence
+# Testing and fixtures
 
-## Recorded local run
+## Coverage
 
-Validated on 2026-10-16 using Linux Node.js 22.23.2, Playwright 1.63.0, and its installed Chromium headless shell.
+Run the unit, adapter, browser, and UI tests with `npm test`.
 
-Command: `npm test` (with this WSL host's existing isolated browser-library path supplied through `LD_LIBRARY_PATH`).
-
-Result: **52 tests passed, 0 failed, 0 skipped**.
-
-| Group               | Count | Evidence covered                                                                                                                                |
-| ------------------- | ----: | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Browser integration |    23 | Working/broken cart, overflow, console and HTTP errors, blocked requests, timeouts, context isolation, safe report rendering, mock proposals    |
-| Adapter contract    |    14 | Opt-in and placeholder rejection, request schema, response validation, refusal, size bounds, sanitized errors, abort propagation, history bound |
-| Unit                |    10 | Origin and action policy, scenario checks, budgets, cloning, scripted planner, placeholder, HTML escaping                                       |
-| UI behavior         |     5 | Actual outcome counts, 320/390/768/1440px layout, keyboard navigation, report links, disclosure controls, incomplete states                     |
+| Group | Contract |
+| --- | --- |
+| Browser integration | Working/broken cart, overflow, console and HTTP errors, blocked requests, timeouts, context isolation, safe report rendering, mock proposals    |
+| Adapter contract | Opt-in and placeholder rejection, request schema, response validation, refusal, size bounds, sanitized errors, abort propagation, history bound |
+| Unit | Origin and action policy, scenario checks, budgets, cloning, scripted planner, placeholder, HTML escaping                                       |
+| UI behavior | Actual outcome counts, 320/390/768/1440px layout, keyboard navigation, report links, disclosure controls, incomplete states                     |
 
 The browser tests run real local Chromium against an in-process synthetic HTTP server. External-request tests use a second loopback trap server and check that prohibited requests did not arrive. They do not contact real external targets.
 
@@ -21,13 +17,11 @@ The adapter tests inject a fake fetch implementation. They make **zero real mode
 
 ## Demonstration
 
-`npm run demo` produced four matching expected outcomes: one passed run and three failed runs. A demo success means fixture outcomes matched. It does not reinterpret known failures as passed QA checks.
+`npm run demo` expects four matching outcomes: one passed run and three failed runs. A demo success means fixture outcomes matched. It does not reinterpret known failures as passed QA checks.
 
 The cart regression report shows expected `Cart: 2 items` and observed `Cart: 1 items`. The mobile report measures overflow at a 390px viewport. The console case records an intentional synthetic error.
 
 Raw run directories are excluded from Git because arbitrary runs can contain sensitive data. The committed `overview.png` and `report.png` are screenshots of the actual demo overview and synthetic cart-regression report, not mockups.
-
-The visual refresh retained the existing 47 regression tests and added five UI tests. Desktop and 390px mobile screenshots were inspected. These targeted checks do not establish comprehensive accessibility compliance or pixel-perfect fidelity to another product.
 
 ## Reproduce
 
@@ -38,7 +32,7 @@ npm test
 npm run demo
 ```
 
-Ensure the host has the required Chromium libraries. The current host reuses an existing isolated dependency directory instead of changing system packages; that path is environment-specific and is not embedded in project scripts.
+Ensure the host has the required Chromium system libraries. Dependency installation must respect the host's package-management and permission policies.
 
 ## Not established
 

@@ -4,7 +4,7 @@ import { parseArgs } from "node:util";
 import { runScenario } from "./runner.mjs";
 import { LlmPlanner } from "./planner.mjs";
 import { OpenAIPlanner } from "./openai-planner.mjs";
-import { escapeHTML } from "./report.mjs";
+import { renderSuite } from "./ui.mjs";
 import { startFixture } from "../fixtures/server.mjs";
 
 async function main() {
@@ -147,7 +147,7 @@ async function main() {
     );
     await writeFile(
       path.join(suite, "index.html"),
-      `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Web QA Agent · Demo</title><style>body{font:17px/1.6 system-ui;background:#f4f6f9;color:#18283b;max-width:900px;margin:60px auto;padding:24px}article{background:white;padding:22px;border:1px solid #dbe2ea;border-radius:10px;margin:16px 0}a{color:#175cd3}small{color:#526276}</style><h1>Web QA Agent</h1><p>Four real browser runs against a disposable synthetic app.</p><p><strong>LLM: placeholder.</strong> Scenarios are scripted; verdicts come from independent checks and browser events.</p>${results.map((r) => `<article><a href="${escapeHTML(r.report)}">${escapeHTML(r.name)}</a><p>Observed: <strong>${escapeHTML(r.status)}</strong> · Fixture expectation: ${escapeHTML(r.expected)}</p></article>`).join("")}<small>A correctly detected fixture bug is still a failed QA run. Demo exit 0 means expected outcomes matched, not that all scenarios passed.</small></html>`,
+      renderSuite(results, matched),
     );
     console.log(
       JSON.stringify(

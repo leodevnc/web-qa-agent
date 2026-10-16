@@ -28,6 +28,7 @@ The scenario is cloned at the boundary. The planner receives observation data, n
 | `openai-planner.mjs`  | Opt-in Responses adapter, strict proposal decoding, transport limits   |
 | `runner.mjs`          | Fresh browser context, HTTP/WS guard, loop, checks, artifact capture   |
 | `report.mjs`          | Escaped static HTML and structured JSON                                |
+| `ui.mjs`              | Shared neutral theme, report shell, status badges and suite overview   |
 | `cli.mjs`             | Local demo, scenario command, exit status                              |
 | `fixtures/server.mjs` | Synthetic working and broken pages; no real business data              |
 

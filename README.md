@@ -103,4 +103,14 @@ This first milestone is a bounded runner, not a general crawler, visual-diff sys
 
 See [architecture](docs/architecture.md), [decisions](docs/decisions.md), [test evidence](docs/test-evidence.md), [learning notes](docs/learning-notes.md), and [roadmap](docs/roadmap.md).
 
+## Interface
+
+The demo overview, reports, and synthetic storefront share a restrained, OpenAI-inspired visual direction: neutral surfaces, generous spacing, clear typography, and subtle status accents. This is an independent project, not an OpenAI product.
+
+The overview links to each run. Reports show expected and observed values side by side, with expandable raw contracts and action details. Section navigation, keyboard focus and narrow-screen layouts work without client-side JavaScript or external fonts. The visual refresh does not change QA verdicts or enable model calls.
+
+See [UI design notes](docs/ui-design.md) for boundaries and verification.
+
+![Local demo overview](docs/overview.png)
+
 ![A report for an intentionally broken cart](docs/report.png)
